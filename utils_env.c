@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 15:17:14 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/08 17:34:24 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/08 17:50:25 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static size_t
 }
 
 char
-	*ft_get_envvar(char **env, char *varname)
+	*ft_get_envvarval(char **env, char *varname)
 {
 	char	*s;
 	size_t	namelen;
@@ -63,3 +63,22 @@ char
 	return (r);
 }
 
+/*
+** Returns the index of the var named varname if it's set
+** -1 otherwise
+*/
+
+/*
+int
+	ft_get_envvaridx(char **env, char *varname)
+{
+	int	r;
+	int	i;
+
+	i = 0;
+	while (env[i])
+	{
+		
+	}
+}
+*/

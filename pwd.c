@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 12:20:05 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/08 17:10:25 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/08 17:49:53 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int
 		printf("too many arguments\n");
 		return (-1);
 	}
-	if (!(s = ft_get_envvar(shell->env, "PWD")))
+	if (!(s = ft_get_envvarval(shell->env, "PWD")))
 		return (-1);
 	ft_putendl_fd(s, 1);
 	free(s);

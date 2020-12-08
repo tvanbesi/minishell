@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:09:24 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/08 17:08:31 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/08 17:49:19 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_token	*ft_get_last_token(t_token *lst);
 void	ft_clear_tokens(t_token **atoken);
 void	ft_add_token(t_token **atoken, t_token *new);
 
-char	*ft_get_envvar(char **env, char *varname);
+char	*ft_get_envvarval(char **env, char *varname);
 char	*ft_get_pwdvar(void);
 
 int		ft_minishell(t_shell *shell);
