@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:09:24 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/08 15:16:09 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/08 17:08:31 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define MINISHELL_H
 # include "libft.h"
 # include "get_next_line.h"
-
-# define	PATH_LENGTH_MAX	4096
 
 // TEMPORARY
 #include <stdio.h>
@@ -45,7 +43,7 @@ typedef	struct	s_parse_data
 
 typedef	struct	s_shell
 {
-	char			path[PATH_LENGTH_MAX];
+	char			**env;
 }				t_shell;
 
 t_token	*ft_get_tokens(char *line);
@@ -55,8 +53,9 @@ void	ft_clear_tokens(t_token **atoken);
 void	ft_add_token(t_token **atoken, t_token *new);
 
 char	*ft_get_envvar(char **env, char *varname);
+char	*ft_get_pwdvar(void);
 
-int		ft_minishell(char **env);
+int		ft_minishell(t_shell *shell);
 
 int		ft_parsing_oquote(t_token **atoken, t_parse_data *pd, char *line);
 int		ft_parsing_cquote(t_token **atoken, t_parse_data *pd, char *line);
@@ -64,11 +63,12 @@ int		ft_parsing_oper(t_token **atoken, t_parse_data *pd, char *line);
 int		ft_parsing_end(t_token **atoken, t_parse_data *pd, char *line);
 int		ft_parsing_word(t_token **atoken, char *word);
 
-int		ft_execute(t_token *cmd, char **env);
+int		ft_execute(t_token *cmd, t_shell *shell);
 
-void	ft_builtin(char *cmd, t_token *argv, char **env);
-int		ft_pwd(t_token *argv);
-int		ft_cd(t_token *argv, char **env);
-int		ft_env(t_token *argv, char **env);
+void	ft_builtin(char *cmd, t_token *argv, t_shell *shell);
+int		ft_pwd(t_token *argv, t_shell *shell);
+int		ft_cd(t_token *argv, t_shell *shell);
+int		ft_env(t_token *argv, t_shell *shell);
+int		ft_export(t_token *argv, t_shell *shell);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 15:17:14 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/08 15:17:28 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/08 16:59:18 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,23 @@ static size_t
 		s++;
 	}
 	return (0);
+}
+
+char
+	*ft_get_pwdvar(void)
+{
+	char	*cwd;
+	char	*r;
+
+	if (!(cwd = getcwd(NULL, 0)))
+		return (NULL);
+	if (!(r = ft_strjoin("PWD=", cwd)))
+	{
+		free(cwd);
+		return (NULL);
+	}
+	free(cwd);
+	return (r);
 }
 
 char

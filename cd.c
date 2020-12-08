@@ -6,19 +6,18 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 12:36:01 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/08 15:30:55 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/08 17:22:00 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 int
-	ft_cd(t_token *argv, char **env)
+	ft_cd(t_token *argv, t_shell *shell)
 {
 	char	*s;
 	int		r;
 
-	//TODO: SHOULD CHANGE PWD ENV VARIABLE (SEE PWD TODO)
 	while (argv && argv->type == METACHAR)
 		argv = argv->next;
 	if (argv && argv->next && argv->next->type == WORD)
@@ -27,7 +26,10 @@ int
 		return (-1);
 	}
 	if (!argv || (argv && argv->type != WORD))
-		s = ft_strdup(ft_get_envvar(env, "HOME"));
+	{
+		printf("where at?\n");
+		return (-1);
+	}
 	else
 	{
 		if (!argv->qt)
@@ -35,14 +37,16 @@ int
 		else
 			s = ft_strdup(argv->s);
 	}
-	if (!ft_strncmp(s, "~", 2))
-	{
-		free(s);
-		s = ft_strdup(ft_get_envvar(env, "HOME"));
-	}
 	r = chdir(s);
 	free(s);
 	if (r)
 		printf("no such file or directory\n");
+	else
+	{
+		//TODO: SHOULD CHANGE PWD ENV VARIABLE CORRECTLY
+		free(shell->env[0]);
+		shell->env[0] = ft_get_pwdvar();
+		//TEMPORARY
+	}
 	return (r);
 }

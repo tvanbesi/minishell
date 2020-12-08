@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:09:01 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/08 15:20:08 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/08 17:05:05 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char
 }
 
 int
-	ft_minishell(char **env)
+	ft_minishell(t_shell *shell)
 {
 	char	*line;
 	t_token	*tokens;
@@ -58,7 +58,7 @@ int
 		}
 		*/
 		
-		ft_execute(tokens, env);
+		ft_execute(tokens, shell);
 		ft_clear_tokens(&tokens);
 	}
 	return (0);
