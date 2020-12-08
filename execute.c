@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 11:58:45 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/08 14:44:11 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/08 15:22:42 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int
 	//TODO: REMOVE ALL STARTING HT AND SPACES
 	// IF TRIM RETURN NULL STRING GO TO NEXT TOKEN
 
+	if (!cmd)
+		return (0);
 	if (!cmd->qt)
 	{
 		if (!(s = ft_strtrim(cmd->s, " \t")))

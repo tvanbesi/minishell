@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 09:18:15 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/08 11:35:57 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/08 15:21:54 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ t_token
 	}
 	if (pd.len && ft_parsing_end(&tokens, &pd, line) == -1)
 		return (NULL);
-	// IF PD.QT = 1 ERROR UNCLOSED QUOTE
+	// TODO: IF PD.QT = 1 ERROR UNCLOSED QUOTE
 	return (tokens);
 }
