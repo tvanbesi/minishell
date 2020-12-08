@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:09:24 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/08 12:26:56 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/08 14:44:40 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ t_token	*ft_get_last_token(t_token *lst);
 void	ft_clear_tokens(t_token **atoken);
 void	ft_add_token(t_token **atoken, t_token *new);
 
-int		ft_minishell(void);
+char	*ft_get_envvar(char **env, char *varname);
+
+int		ft_minishell(char **env);
 
 int		ft_parsing_oquote(t_token **atoken, t_parse_data *pd, char *line);
 int		ft_parsing_cquote(t_token **atoken, t_parse_data *pd, char *line);
@@ -62,10 +64,10 @@ int		ft_parsing_oper(t_token **atoken, t_parse_data *pd, char *line);
 int		ft_parsing_end(t_token **atoken, t_parse_data *pd, char *line);
 int		ft_parsing_word(t_token **atoken, char *word);
 
-int		ft_execute(t_token *cmd);
+int		ft_execute(t_token *cmd, char **env);
 
-void	ft_builtin(char *cmd, t_token *argv);
+void	ft_builtin(char *cmd, t_token *argv, char **env);
 int		ft_pwd(t_token *argv);
-
+int		ft_cd(t_token *argv, char **env);
 
 #endif

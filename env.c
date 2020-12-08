@@ -1,33 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/08 11:58:45 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/08 14:44:11 by tvanbesi         ###   ########.fr       */
+/*   Created: 2020/12/08 14:10:12 by tvanbesi          #+#    #+#             */
+/*   Updated: 2020/12/08 14:28:20 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int
-	ft_execute(t_token *cmd, char **env)
+static size_t
+	ft_get_namelen(char *s)
+{
+	size_t	r;
+
+	r = 0;
+	while (*s)
+	{
+		if (*s == '=')
+			return (r);
+		r++;
+		s++;
+	}
+	return (0);
+}
+
+char
+	*ft_get_envvar(char **env, char *varname)
 {
 	char	*s;
+	size_t	namelen;
 
-	//TODO: REMOVE ALL STARTING HT AND SPACES
-	// IF TRIM RETURN NULL STRING GO TO NEXT TOKEN
-
-	if (!cmd->qt)
+	while (*env)
 	{
-		if (!(s = ft_strtrim(cmd->s, " \t")))
-			return (-1);
+		namelen = ft_get_namelen(*env);
+		s = ft_substr(*env, 0, namelen - 1);
+		if (!ft_strncmp(s, varname, namelen - 1))
+			return (ft_substr(*env, namelen + 1, ft_strlen(*env)));
+		free(s);
+		env++;
 	}
-	else if (!(s = ft_strdup(cmd->s)))
-		return (-1);
-	ft_builtin(s, cmd->next, env);
-	free(s);
-	return (0);
+	return (NULL);
 }

@@ -6,14 +6,14 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:08:43 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/08 11:27:04 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/08 14:39:39 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 int
-	main(int argc, char **argv)
+	main(int argc, char **argv, char **env)
 {
-	return (ft_minishell());
+	return (ft_minishell(env));
 }
