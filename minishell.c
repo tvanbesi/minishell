@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:09:01 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/08 14:43:33 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/08 15:06:37 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ int
 		current = tokens;
 		while (current)
 		{
+			if (current->type == WORD)
+				printf("WORD\t\t");
+			else if (current->type == OPERATOR)
+				printf("OPERATOR\t");
+			else if (current->type == METACHAR)
+				printf("METACHAR\t");
 			printf("|%s|\n", current->s);
 			current = current-> next;
 		}

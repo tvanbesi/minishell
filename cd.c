@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 12:36:01 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/08 14:46:48 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/08 15:09:28 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int
 	char	*s;
 	int		r;
 
+	while (argv && argv->type == METACHAR)
+		argv = argv->next;
 	if (argv && argv->next && argv->next->type == WORD)
 	{
 		printf("too many argv\n");
@@ -26,7 +28,12 @@ int
 	if (!argv || (argv && argv->type != WORD))
 		s = ft_strdup(ft_get_envvar(env, "HOME"));
 	else
-		s = ft_strtrim(argv->s, " \t");
+	{
+		if (!argv->qt)
+			s = ft_strtrim(argv->s, " \t");
+		else
+			s = ft_strdup(argv->s);
+	}
 	if (!ft_strncmp(s, "~", 2))
 	{
 		free(s);
