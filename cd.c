@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 12:36:01 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/08 15:09:28 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/08 15:30:55 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int
 	char	*s;
 	int		r;
 
+	//TODO: SHOULD CHANGE PWD ENV VARIABLE (SEE PWD TODO)
 	while (argv && argv->type == METACHAR)
 		argv = argv->next;
 	if (argv && argv->next && argv->next->type == WORD)

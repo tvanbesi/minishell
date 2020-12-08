@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 12:20:05 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/08 12:35:24 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/08 15:30:24 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int
 {
 	char	*s;
 
+	//TODO: PWD SHOULD ACUTALLY PRINT THE PWD ENV VARIABLE
 	if (argv || (argv && argv->type == WORD))
 	{
 		printf("too many arguments\n");
