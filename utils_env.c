@@ -1,26 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   utils_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/08 14:10:12 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/08 15:17:39 by tvanbesi         ###   ########.fr       */
+/*   Created: 2020/12/08 15:17:14 by tvanbesi          #+#    #+#             */
+/*   Updated: 2020/12/08 15:17:28 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int
-	ft_env(t_token *argv, char **env)
+static size_t
+	ft_get_namelen(char *s)
 {
-	if (argv && argv->type == WORD)
+	size_t	r;
+
+	r = 0;
+	while (*s)
 	{
-		printf("too many argv\n");
-		return (-1);
+		if (*s == '=')
+			return (r);
+		r++;
+		s++;
 	}
-	while (*env)
-		ft_putendl_fd(*env++, 1);
 	return (0);
+}
+
+char
+	*ft_get_envvar(char **env, char *varname)
+{
+	char	*s;
+	size_t	namelen;
+
+	while (*env)
+	{
+		namelen = ft_get_namelen(*env);
+		s = ft_substr(*env, 0, namelen - 1);
+		if (!ft_strncmp(s, varname, namelen - 1))
+			return (ft_substr(*env, namelen + 1, ft_strlen(*env)));
+		free(s);
+		env++;
+	}
+	return (NULL);
 }

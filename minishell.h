@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:09:24 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/08 14:44:40 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/08 15:16:09 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ int		ft_execute(t_token *cmd, char **env);
 void	ft_builtin(char *cmd, t_token *argv, char **env);
 int		ft_pwd(t_token *argv);
 int		ft_cd(t_token *argv, char **env);
+int		ft_env(t_token *argv, char **env);
 
 #endif

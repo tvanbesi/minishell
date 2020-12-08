@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 16:28:11 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/08 14:32:17 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/08 15:15:46 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void
 		ft_pwd(argv);
 	else if (!ft_strncmp(cmd, "cd", 3))
 		ft_cd(argv, env);
+	else if (!ft_strncmp(cmd, "env", 3))
+		ft_env(argv, env);
 	else
 		printf("command not found\n");
 }
