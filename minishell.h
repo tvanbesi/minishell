@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:09:24 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/09 15:48:41 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 16:20:05 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int		ft_parsing_cquote(t_list **atoken, t_parse_data *pd, char *line);
 int		ft_parsing_oper(t_list **atoken, t_parse_data *pd, char *line);
 int		ft_parsing_end(t_list **atoken, t_parse_data *pd, char *line);
 int		ft_parsing_word(t_list **atoken, char *word);
+int		ft_parsing_equalquote(t_list **atoken, t_parse_data *pd, char *line);
 
 int		ft_execute(t_list *token, t_shell *shell);
 

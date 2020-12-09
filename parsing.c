@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 09:18:15 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/09 12:00:42 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 16:29:48 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ t_list
 		pd.len++;
 		if (!pd.qt && (line[pd.i] == 34 || line[pd.i] == 39))
 		{
-			if (ft_parsing_oquote(&token, &pd, line) == -1)
+			if (pd.i > 0 && line[pd.i - 1] == '=')
+				ft_parsing_equalquote(&token, &pd, line);
+			else if (ft_parsing_oquote(&token, &pd, line) == -1)
 				return (NULL);
 		}
 		else if (!pd.qt && ft_isoperator(line[pd.i]))

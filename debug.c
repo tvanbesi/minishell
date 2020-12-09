@@ -6,11 +6,15 @@ void
 	t_token	*token;
 
 	token = (t_token*)content;
+	if (token->qt)
+		printf("QUOTED\t\t");
+	else
+		printf("UNQUOTED\t");
 	if (token->type == WORD)
 		printf("WORD\t\t");
-	if (token->type == OPERATOR)
+	else if (token->type == OPERATOR)
 		printf("OPERATOR\t");
-	if (token->type == METACHAR)
+	else if (token->type == METACHAR)
 		printf("METACHAR\t");
 	printf("|%s|\n", token->s);
 }

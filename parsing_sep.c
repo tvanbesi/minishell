@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 09:37:29 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/09 12:01:01 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 16:36:35 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,26 @@ int
 		return (-1);
 	if (ft_parsing_word(atoken, s) == -1)
 		return (-1);
+	return (0);
+}
+
+int
+	ft_parsing_equalquote(t_list **atoken, t_parse_data *pd, char *line)
+{
+	char	*s;
+
+	pd->qt = line[pd->i++];
+	pd->len++;
+	while (line[pd->i] != pd->qt)
+	{
+		pd->i++;
+		pd->len++;
+	}
+	if (!line[pd->i])
+		return (-1); // ERROR UNCLOSED QUOTE
+	s = ft_substr(line, pd->i - pd->len + 1, pd->len);
+	if (ft_parsing_word(atoken, s) == -1)
+		return (-1);
+	pd->len = 0;
 	return (0);
 }
