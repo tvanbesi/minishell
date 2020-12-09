@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 12:20:05 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/08 17:49:53 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 09:53:18 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int
 	ft_pwd(t_token *argv, t_shell *shell)
 {
 	char	*s;
-
+	
 	if (argv || (argv && argv->type == WORD))
 	{
 		printf("too many arguments\n");

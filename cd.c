@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 12:36:01 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/08 17:22:00 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 10:00:33 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int
 {
 	char	*s;
 	int		r;
+	int		i;
 
 	while (argv && argv->type == METACHAR)
 		argv = argv->next;
@@ -43,10 +44,15 @@ int
 		printf("no such file or directory\n");
 	else
 	{
-		//TODO: SHOULD CHANGE PWD ENV VARIABLE CORRECTLY
-		free(shell->env[0]);
-		shell->env[0] = ft_get_pwdvar();
-		//TEMPORARY
+		i = ft_get_envvaridx(shell->env, "PWD");
+		free(shell->env[i]);
+		//TODO: ? Could create error if malloc fails, directory will change but 
+		//PWD won't be set and error will be returned. Will get through defense
+		//but isn't properly protected.
+		if (!(s = getcwd(NULL, 0)))
+			return (-1);
+		if (!(shell->env[i] = ft_mkenvvar("PWD=", s)))
+			return (-1);
 	}
 	return (r);
 }

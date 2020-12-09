@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:08:43 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/08 17:03:14 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 09:49:50 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@ static char
 	**ft_init_env(void)
 {
 	char	**r;
+	char	*path;
 
 	if (!(r = ft_calloc(2, sizeof(*r))))
 		return (NULL);
-	if (!(r[0] = ft_get_pwdvar()))
-	{
-		free(r);
+	if (!(path = getcwd(NULL, 0)))
 		return (NULL);
-	}
+	if (!(r[0] = ft_mkenvvar("PWD=", path)))
+		return (NULL);
+	free(path);
 	r[1] = NULL;
 	return (r);
 }
