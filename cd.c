@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 12:36:01 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/09 13:46:59 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 15:31:42 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int
 	}
 	else
 	{
-		if (!content->qt)
-			s = ft_strtrim(content->s, " \t");
-		else
-			s = ft_strdup(content->s);
+		if (!content->qt && !(s = ft_strtrim(content->s, " \t")))
+			return (-1);
+		else if (content->qt && !(s = ft_strdup(content->s)))
+			return (-1);
 	}
 	r = chdir(s);
 	free(s);
