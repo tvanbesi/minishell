@@ -6,13 +6,13 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:08:43 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/09 15:52:32 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 17:07:42 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_list
+static t_list
 	*ft_init_env(void)
 {
 	t_list	*env;

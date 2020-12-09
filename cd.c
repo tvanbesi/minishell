@@ -6,11 +6,31 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 12:36:01 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/09 15:31:42 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 17:14:13 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int
+	ft_resetpwd(t_shell *shell)
+{
+	char	*name;
+	char	*val;
+	t_env	*content;
+	t_list	*env;
+
+	if (!(name = ft_strdup("PWD")))
+		return (-1);
+	if (!(val = getcwd(NULL, 0)))
+		return (-1);
+	if (!(content = ft_new_env(name, val, 1)))
+		return (-1);
+	if (!(env = ft_lstnew(content)))
+		return(-1);
+	ft_lstadd_front(&shell->env, env);
+	return (0);
+}
 
 int
 	ft_cd(t_list *argv, t_shell *shell)
@@ -44,6 +64,8 @@ int
 	free(s);
 	if (r)
 		printf("no such file or directory\n");
+	else if (!ft_get_env("PWD", shell))
+		return (ft_resetpwd(shell));
 	else if ((ft_edit_env("PWD", getcwd(NULL, 0), shell)) == -1)
 		return (-1);
 	return (r);

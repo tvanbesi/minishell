@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 15:17:14 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/09 15:40:43 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 17:24:21 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,10 @@ void
 			free(content);
 			if (previous)
 				previous->next = current->next;
+			if (current == shell->env)
+				shell->env = NULL;
 			free(current);
+			current = NULL;
 			return ;
 		}
 		previous = current;

@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 15:32:24 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/09 16:52:42 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 17:52:48 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,51 @@ static int
 {
 	char	*val;
 	char	*name;
+	char	*tmp;
 	t_env	*content;
 	t_list	*newenv;
 
 	val = ft_strchr(word, '=');
-	if (val)
+	if (!val)
+		return (0);
+	if (qt)
 	{
-		if (qt && !(val = ft_strdup(val + 1)))
+		if (!(val = ft_strdup(val + 1)))
 			return (-1);
-		else if (!qt && !(val = ft_substr(val, 2, ft_strlen(val) - 3)))
+		if (!(name = ft_substr(word, 0, ft_strlen(word) - (ft_strlen(val) + 1))))
 			return (-1);
-		if (!(name = ft_substr(word, 0, ft_strlen(word) - (ft_strlen(val) + 1) - !qt * 2)))
+	}
+	else
+	{
+		if (!(tmp = ft_strdup(val + 1)))
 			return (-1);
-		printf("|%s|\t|%s|\n", name, val);
-		if (!(content = ft_new_env(name, val, 1)))
-			return (-1);
-		if (!(newenv = ft_lstnew(content)))
-			return (-1);
-		if (ft_get_env(name, shell))
+		if ((val[0] == 34 || val[0] == 39) && val[0] == val[ft_strlen(val) - 1])
 		{
-			if (ft_edit_env(name, val, shell) == -1)
+			if (!(val = ft_substr(val, 1, ft_strlen(val) - 2)))
+				return (-1);
+			if (!(name = ft_substr(word, 0, ft_strlen(word) - (ft_strlen(val) + 3))))
 				return (-1);
 		}
 		else
-			ft_lstadd_back(&shell->env, newenv);
+		{
+			if (!(val = ft_strdup(val + 1)))
+				return (-1);
+			if (!(name = ft_substr(word, 0, ft_strlen(word) - (ft_strlen(val) + 1))))
+				return (-1);
+		}
 	}
+	printf("|%s|\t|%s|\n", name, val);
+	if (!(content = ft_new_env(name, val, 1)))
+		return (-1);
+	if (!(newenv = ft_lstnew(content)))
+		return (-1);
+	if (ft_get_env(name, shell))
+	{
+		if (ft_edit_env(name, val, shell) == -1)
+			return (-1);
+	}
+	else
+		ft_lstadd_back(&shell->env, newenv);
 	return (0);
 }
 
