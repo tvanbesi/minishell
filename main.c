@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:08:43 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/09 13:59:13 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 14:16:05 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,5 @@ int
 		printf("error\n");
 		return (-1);
 	}
-
-	//ft_lstiter(shell.env, ft_putenv);
-
 	return (ft_minishell(&shell));
 }
