@@ -6,37 +6,39 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 12:36:01 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/09 10:00:33 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 12:55:44 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 int
-	ft_cd(t_token *argv, t_shell *shell)
+	ft_cd(t_list *argv, t_shell *shell)
 {
 	char	*s;
 	int		r;
 	int		i;
+	t_token	*content;
 
-	while (argv && argv->type == METACHAR)
+	if (argv && ((t_token*)(argv->content))->type == METACHAR)
 		argv = argv->next;
-	if (argv && argv->next && argv->next->type == WORD)
+	if (argv && argv->next && ((t_token*)(argv->next->content))->type != OPERATOR)
 	{
 		printf("too many argv\n");
 		return (-1);
 	}
-	if (!argv || (argv && argv->type != WORD))
+	content = (t_token*)argv->content;
+	if (!argv || (argv && content->type != WORD))
 	{
 		printf("where at?\n");
 		return (-1);
 	}
 	else
 	{
-		if (!argv->qt)
-			s = ft_strtrim(argv->s, " \t");
+		if (!content->qt)
+			s = ft_strtrim(content->s, " \t");
 		else
-			s = ft_strdup(argv->s);
+			s = ft_strdup(content->s);
 	}
 	r = chdir(s);
 	free(s);

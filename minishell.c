@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:09:01 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/08 17:05:05 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 12:42:26 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,37 +29,38 @@ static char
 	return (r);
 }
 
+void
+	ft_puttoken(void *content)
+{
+	t_token	*token;
+
+	token = (t_token*)content;
+	if (token->type == WORD)
+		printf("WORD\t\t");
+	if (token->type == OPERATOR)
+		printf("OPERATOR\t");
+	if (token->type == METACHAR)
+		printf("METACHAR\t");
+	printf("|%s|\n", token->s);
+}
+
 int
 	ft_minishell(t_shell *shell)
 {
 	char	*line;
-	t_token	*tokens;
+	t_list	*token;
 
 	while (1)
 	{
 		ft_putstr("> ");
 		line = ft_read_line();
-		tokens = ft_get_tokens(line);
+		token = ft_get_tokens(line);
 		free(line);
 		
-		/*
-		t_token	*current;
-		current = tokens;
-		while (current)
-		{
-			if (current->type == WORD)
-				printf("WORD\t\t");
-			else if (current->type == OPERATOR)
-				printf("OPERATOR\t");
-			else if (current->type == METACHAR)
-				printf("METACHAR\t");
-			printf("|%s|\n", current->s);
-			current = current-> next;
-		}
-		*/
-		
-		ft_execute(tokens, shell);
-		ft_clear_tokens(&tokens);
+		ft_lstiter(token, ft_puttoken);
+
+		ft_execute(token, shell);
+		//ft_clear_tokens(&tokens);
 	}
 	return (0);
 }

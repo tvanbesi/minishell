@@ -6,17 +6,19 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 10:28:22 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/08 12:06:10 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 11:59:56 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 int
-	ft_parsing_word(t_token **atoken, char *word)
+	ft_parsing_word(t_list **atoken, char *word)
 {
 	char			*s;
 	t_parse_data	pd;
+	t_token			*content;
+	t_list			*token;
 
 	//TODO: RENAME QT TO T (I.E. TOGGLE) IN T_PARSE_DATA STRUCT
 
@@ -30,7 +32,11 @@ int
 		{
 			if (!(s = ft_substr(word, pd.i - pd.len + 1, pd.len - 1)))
 				return (-1);
-			ft_add_token(atoken, ft_new_token(WORD, s, 0));
+			if (!(content = ft_new_token(WORD, s, 0)))
+				return (-1);
+			if (!(token = ft_lstnew(content)))
+				return (-1);
+			ft_lstadd_back(atoken, token);
 			pd.qt = 0;
 			pd.len = 1;
 		}
@@ -40,13 +46,21 @@ int
 	{
 		if (!(s = ft_substr(word, pd.i - pd.len, pd.len)))
 			return (-1);
-		ft_add_token(atoken, ft_new_token(WORD, s, 0));
+		if (!(content = ft_new_token(WORD, s, 0)))
+			return (-1);
+		if (!(token = ft_lstnew(content)))
+			return (-1);
+		ft_lstadd_back(atoken, token);
 	}
 	else if (word[0])
 	{
 		if (!(s = ft_substr(word, pd.i - pd.len, pd.len)))
 			return (-1);
-		ft_add_token(atoken, ft_new_token(METACHAR, s, 0));
+		if (!(content = ft_new_token(METACHAR, s, 0)))
+			return (-1);
+		if (!(token = ft_lstnew(content)))
+			return (-1);
+		ft_lstadd_back(atoken, token);
 	}
 	free(word);
 	return (0);
