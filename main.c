@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:08:43 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/09 14:16:05 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 15:52:32 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ t_list
 	t_list	*env;
 	t_env	*pwd;
 	char	*path;
+	char	*name;
 
 	if (!(path = getcwd(NULL, 0)))
 		return (NULL);
-	if (!(pwd = ft_new_env("PWD", path, 1)))
+	if (!(name = ft_strdup("PWD")))
+		return (NULL);
+	if (!(pwd = ft_new_env(name, path, 1)))
 		return (NULL);
 	if (!(env = ft_lstnew(pwd)))
 		return (NULL);

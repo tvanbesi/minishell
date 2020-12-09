@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:09:24 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/09 13:57:11 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 15:48:41 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_token	*ft_new_token(int type, char *s, int qt);
 t_env	*ft_new_env(char *name, char *val, int set);
 int		ft_edit_env(char *name, char *newval, t_shell *shell);
 char	*ft_get_env(char *name, t_shell *shell);
+void	ft_remove_env(char *name, t_shell *shell);
 
 int		ft_minishell(t_shell *shell);
 
@@ -73,6 +74,7 @@ int		ft_pwd(t_list *argv, t_shell *shell);
 int		ft_cd(t_list *argv, t_shell *shell);
 int		ft_env(t_list *argv, t_shell *shell);
 int		ft_export(t_list *argv, t_shell *shell);
+int		ft_unset(t_list *argv, t_shell *shell);
 
 //DEBUGGING
 void	ft_puttoken(void *content);

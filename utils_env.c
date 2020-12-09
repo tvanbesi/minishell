@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 15:17:14 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/09 13:58:36 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 15:40:43 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,31 @@ char
 		current = current->next;
 	}
 	return (NULL);
+}
+
+void
+	ft_remove_env(char *name, t_shell *shell)
+{
+	t_list	*current;
+	t_list	*previous;
+	t_env	*content;
+
+	previous = NULL;
+	current = shell->env;
+	while (current)
+	{
+		content = (t_env*)current->content;
+		if (!ft_strncmp(content->name, name, ft_strlen(name)))
+		{
+			free(content->name);
+			free(content->val);
+			free(content);
+			if (previous)
+				previous->next = current->next;
+			free(current);
+			return ;
+		}
+		previous = current;
+		current = current->next;
+	}
 }
