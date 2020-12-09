@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:09:01 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/09 12:42:26 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 13:58:52 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,6 @@ static char
 	return (r);
 }
 
-void
-	ft_puttoken(void *content)
-{
-	t_token	*token;
-
-	token = (t_token*)content;
-	if (token->type == WORD)
-		printf("WORD\t\t");
-	if (token->type == OPERATOR)
-		printf("OPERATOR\t");
-	if (token->type == METACHAR)
-		printf("METACHAR\t");
-	printf("|%s|\n", token->s);
-}
 
 int
 	ft_minishell(t_shell *shell)
@@ -57,10 +43,10 @@ int
 		token = ft_get_tokens(line);
 		free(line);
 		
-		ft_lstiter(token, ft_puttoken);
+		//ft_lstiter(token, ft_puttoken);
 
 		ft_execute(token, shell);
-		//ft_clear_tokens(&tokens);
+		// CLEAR TOKENS
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:09:24 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/09 12:21:29 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/09 13:57:11 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,38 +19,44 @@
 #include <stdio.h>
 // TEMPORARY
 
-typedef	struct	s_token
+typedef	struct		s_shell
 {
-	int				type;
-	char			*s;
-	int				qt;
-}				t_token;
+	t_list			*env;
+}					t_shell;
 
-typedef	enum	e_token_type
+typedef	struct		s_env
+{
+	char			*name;
+	char			*val;
+	int				set;
+}					t_env;
+
+typedef	enum		e_token_type
 {
 	WORD,
 	OPERATOR,
 	METACHAR
-}				t_token_type;
+}					t_token_type;
 
-typedef	struct	s_parse_data
+typedef	struct		s_token
+{
+	int				type;
+	char			*s;
+	int				qt;
+}					t_token;
+
+typedef	struct		s_parse_data
 {
 	unsigned int	i;
 	size_t			len;
 	int				qt;
-}				t_parse_data;
-
-typedef	struct	s_shell
-{
-	char			**env;
-}				t_shell;
+}					t_parse_data;
 
 t_list	*ft_get_tokens(char *line);
 t_token	*ft_new_token(int type, char *s, int qt);
-
-int		ft_get_envvaridx(char **env, const char *varname);
-char	*ft_get_envvarval(char **env, const char *varname);
-char	*ft_mkenvvar(const char *varname, const char *varval);
+t_env	*ft_new_env(char *name, char *val, int set);
+int		ft_edit_env(char *name, char *newval, t_shell *shell);
+char	*ft_get_env(char *name, t_shell *shell);
 
 int		ft_minishell(t_shell *shell);
 
@@ -67,5 +73,10 @@ int		ft_pwd(t_list *argv, t_shell *shell);
 int		ft_cd(t_list *argv, t_shell *shell);
 int		ft_env(t_list *argv, t_shell *shell);
 int		ft_export(t_list *argv, t_shell *shell);
+
+//DEBUGGING
+void	ft_puttoken(void *content);
+void	ft_putenv(void *content);
+//DEBUGGING
 
 #endif
