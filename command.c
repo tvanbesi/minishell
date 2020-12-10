@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 11:58:45 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/10 10:47:39 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/10 14:02:59 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 int
-	ft_execute(t_list *token, t_shell *shell)
+	ft_command(t_list *token, t_shell *shell)
 {
 	char	*s;
 	t_list	*current;
