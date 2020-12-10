@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 15:32:24 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/09 17:52:48 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/10 09:00:40 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static int
 	{
 		if (!(tmp = ft_strdup(val + 1)))
 			return (-1);
-		if ((val[0] == 34 || val[0] == 39) && val[0] == val[ft_strlen(val) - 1])
+		if ((val[1] == 34 || val[1] == 39) && val[1] == val[ft_strlen(val) - 1])
 		{
-			if (!(val = ft_substr(val, 1, ft_strlen(val) - 2)))
+			if (!(val = ft_substr(val, 2, ft_strlen(val) - 3)))
 				return (-1);
 			if (!(name = ft_substr(word, 0, ft_strlen(word) - (ft_strlen(val) + 3))))
 				return (-1);
@@ -50,7 +50,6 @@ static int
 				return (-1);
 		}
 	}
-	printf("|%s|\t|%s|\n", name, val);
 	if (!(content = ft_new_env(name, val, 1)))
 		return (-1);
 	if (!(newenv = ft_lstnew(content)))

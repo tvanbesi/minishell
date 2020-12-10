@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 09:18:15 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/09 16:29:48 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/10 08:53:21 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ t_list
 	t_list			*token;
 	t_parse_data	pd;
 
-	// TODO: CLEAR AND RETURN NULL IF PARSING RETURNS -1
+	//TODO: CLEAR AND RETURN NULL IF PARSING RETURNS -1
+	//AND put error message somewhere to differenciate
+	//between no token and error in parsing (rn both
+	//return null ...
 	token = NULL;
 	pd = (t_parse_data){0, 0, 0};
 	while (line[pd.i])
@@ -51,6 +54,6 @@ t_list
 	}
 	if (pd.len && ft_parsing_end(&token, &pd, line) == -1)
 		return (NULL);
-	// TODO: IF PD.QT = 1 ERROR UNCLOSED QUOTE
+	//TODO: IF PD.QT = 1 ERROR UNCLOSED QUOTE
 	return (token);
 }
