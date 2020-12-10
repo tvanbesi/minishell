@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:09:24 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/10 09:10:39 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/10 13:13:38 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef	struct		s_parse_data
 	int				qt;
 }					t_parse_data;
 
-t_list	*ft_get_tokens(char *line);
+t_list	*ft_get_tokens(char *line, t_shell *shell);
 t_token	*ft_new_token(int type, char *s, int qt);
 t_env	*ft_new_env(char *name, char *val, int set);
 int		ft_edit_env(char *name, char *newval, t_shell *shell);
@@ -61,12 +61,13 @@ void	ft_remove_env(char *name, t_shell *shell);
 
 int		ft_minishell(t_shell *shell);
 
-int		ft_parsing_oquote(t_list **atoken, t_parse_data *pd, char *line);
-int		ft_parsing_cquote(t_list **atoken, t_parse_data *pd, char *line);
-int		ft_parsing_oper(t_list **atoken, t_parse_data *pd, char *line);
-int		ft_parsing_end(t_list **atoken, t_parse_data *pd, char *line);
-int		ft_parsing_word(t_list **atoken, char *word);
-int		ft_parsing_equalquote(t_list **atoken, t_parse_data *pd, char *line);
+int		ft_parsing_oquote(t_list **atoken, t_parse_data *pd, char *line, t_shell *shell);
+int		ft_parsing_cquote(t_list **atoken, t_parse_data *pd, char *line, t_shell *shell);
+int		ft_parsing_oper(t_list **atoken, t_parse_data *pd, char *line, t_shell *shell);
+int		ft_parsing_end(t_list **atoken, t_parse_data *pd, char *line, t_shell *shell);
+int		ft_parsing_word(t_list **atoken, int qt, char *word, t_shell *shell);
+int		ft_parsing_equalquote(t_list **atoken, t_parse_data *pd, char *line, t_shell *shell);
+char	*ft_expand_alias(char *word, t_shell *shell);
 
 int		ft_execute(t_list *token, t_shell *shell);
 

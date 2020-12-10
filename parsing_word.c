@@ -6,14 +6,14 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 10:28:22 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/09 11:59:56 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/10 13:08:14 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 int
-	ft_parsing_word(t_list **atoken, char *word)
+	ft_parsing_word(t_list **atoken, int qt, char *word, t_shell *shell)
 {
 	char			*s;
 	t_parse_data	pd;
@@ -32,6 +32,8 @@ int
 		{
 			if (!(s = ft_substr(word, pd.i - pd.len + 1, pd.len - 1)))
 				return (-1);
+			if (qt != 39 && !(s = ft_expand_alias(s, shell)))
+				return (-1);
 			if (!(content = ft_new_token(WORD, s, 0)))
 				return (-1);
 			if (!(token = ft_lstnew(content)))
@@ -45,6 +47,8 @@ int
 	if (pd.qt)
 	{
 		if (!(s = ft_substr(word, pd.i - pd.len, pd.len)))
+			return (-1);
+		if (qt != 39 && !(s = ft_expand_alias(s, shell)))
 			return (-1);
 		if (!(content = ft_new_token(WORD, s, 0)))
 			return (-1);

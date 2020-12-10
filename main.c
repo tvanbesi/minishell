@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:08:43 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/09 17:07:42 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/10 13:11:12 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,8 @@ int
 		printf("error\n");
 		return (-1);
 	}
+	//TEST
+	//printf("|%s|\n", ft_expand_alias(ft_strdup("abcde$PWD"), &shell));
+	//TEST
 	return (ft_minishell(&shell));
 }
