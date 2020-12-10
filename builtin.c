@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 16:28:11 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/10 09:33:38 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/10 15:47:24 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void
 		ft_echo(argv, shell);
 	else if (!ft_strncmp(cmd, "exit", 5))
 		exit(0);
+	else if (cmd[0] == '/')
+		ft_execute(cmd, argv, shell->env);
 	else
 		printf("command not found\n");
 }

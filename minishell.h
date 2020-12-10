@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:09:24 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/10 14:03:09 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/10 14:36:32 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int		ft_parsing_equalquote(t_list **atoken, t_parse_data *pd, char *line, t_shel
 char	*ft_expand_alias(char *word, t_shell *shell);
 
 int		ft_command(t_list *token, t_shell *shell);
+int		ft_execute(char *path, t_list *token, t_list *env);
 
 void	ft_builtin(char *cmd, t_list *argv, t_shell *shell);
 int		ft_pwd(t_list *argv, t_shell *shell);
