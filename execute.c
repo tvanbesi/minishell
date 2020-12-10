@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 14:04:49 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/10 15:51:45 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/10 16:10:08 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static char
 			return (NULL);
 		r[0] = ft_strdup("");
 		r[1] = NULL;
+		return (r);
 	}
 	if (!(r = (char**)ft_calloc(l + 1, sizeof(*r))))
 		return (NULL);
@@ -121,6 +122,8 @@ int
 {
 	char	**argv;
 	char	**envp;
+
+	//TODO: Doesn't check if directory exits ...
 
 	if (!(argv = ft_get_argv(token)))
 		return (-1);
