@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:09:24 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/09 17:04:48 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/10 09:10:39 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int		ft_cd(t_list *argv, t_shell *shell);
 int		ft_env(t_list *argv, t_shell *shell);
 int		ft_export(t_list *argv, t_shell *shell);
 int		ft_unset(t_list *argv, t_shell *shell);
+int		ft_echo(t_list *argv, t_shell *shell);
 
 //DEBUGGING
 void	ft_puttoken(void *content);
