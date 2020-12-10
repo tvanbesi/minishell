@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 11:58:45 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/09 12:56:15 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/10 10:47:39 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,43 @@ int
 	ft_execute(t_list *token, t_shell *shell)
 {
 	char	*s;
+	t_list	*current;
 	t_token	*content;
 
-	//TODO: REMOVE ALL STARTING HT AND SPACES
-	// IF TRIM RETURN NULL STRING GO TO NEXT TOKEN
+	//TODO: remove whitespaces at beggining (try |    'echo'  truc|)
 
-	if (!token)
-		return (0);
-	content = (t_token*)(token->content);
-	if (!content->qt)
+	current = token;
+	while (current)
 	{
-		if (!(s = ft_strtrim(content->s, " \t")))
-			return (-1);
+		content = (t_token*)current->content;
+		if (content->type == WORD)
+		{
+			if (!content->qt && (!(s = ft_strtrim(content->s, " \t"))))
+				return (-1);
+			else if (content->qt && (!(s = ft_strdup(content->s))))
+				return (-1);
+			current = current->next;
+			ft_builtin(s, current, shell);
+			free(s);
+		}
+		while (current)
+		{
+			content = (t_token*)current->content;
+			if (content->type == OPERATOR)
+			{
+				if (content->s[0] == ';')
+				{
+					current = current->next;
+					break;
+				}
+				else
+				{
+					printf("unsuported operator\n");
+					return (-1);
+				}
+			}
+			current = current->next;
+		}
 	}
-	else if (!(s = ft_strdup(content->s)))
-		return (-1);
-	ft_builtin(s, token->next, shell);
-	free(s);
 	return (0);
 }
