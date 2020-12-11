@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 14:04:49 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/11 13:20:07 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/11 14:28:44 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,12 +140,16 @@ int
 		return (-1);
 	if (!(envp = ft_get_aenv(env)))
 		return (-1);
-	pid = fork();
+	//Only for if there is no piping involved
+	//pid = fork();
 	r = 0;
-	if (!pid)
+	execve(path, argv, envp);
+	/*
+	if (pid == 0)
 		execve(path, argv, envp);
 	else
 		waitpid(pid, &r, 0);
+	*/
 	ft_free_arr(argv);
 	ft_free_arr(envp);
 	return (0);

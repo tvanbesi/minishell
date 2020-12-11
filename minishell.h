@@ -6,12 +6,13 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:09:24 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/10 14:36:32 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/11 14:08:34 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+# include <sys/wait.h>
 # include "libft.h"
 # include "get_next_line.h"
 
@@ -54,6 +55,7 @@ typedef	struct		s_parse_data
 
 t_list	*ft_get_tokens(char *line, t_shell *shell);
 t_token	*ft_new_token(int type, char *s, int qt);
+t_token	*ft_get_nextoper(t_list *token);
 t_env	*ft_new_env(char *name, char *val, int set);
 int		ft_edit_env(char *name, char *newval, t_shell *shell);
 char	*ft_get_env(char *name, t_shell *shell);
@@ -71,6 +73,7 @@ char	*ft_expand_alias(char *word, t_shell *shell);
 
 int		ft_command(t_list *token, t_shell *shell);
 int		ft_execute(char *path, t_list *token, t_list *env);
+void	ft_pipe(t_list *token, t_shell *shell);
 
 void	ft_builtin(char *cmd, t_list *argv, t_shell *shell);
 int		ft_pwd(t_list *argv, t_shell *shell);
