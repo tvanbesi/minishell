@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 14:04:49 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/10 16:10:08 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/11 10:45:57 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,18 @@ static char
 	l = ft_get_argc(argv);
 	if (!l)
 	{
-		if (!(r = (char**)ft_calloc(2, sizeof(*r))))
+		if (!(r = (char**)ft_calloc(3, sizeof(*r))))
 			return (NULL);
-		r[0] = ft_strdup("");
-		r[1] = NULL;
+		if (!(r[0] = ft_strdup("minishell")))
+			return (NULL);
+		if (!(r[1] = ft_strdup("")))
+			return (NULL);
+		r[2] = NULL;
 		return (r);
 	}
-	if (!(r = (char**)ft_calloc(l + 1, sizeof(*r))))
+	if (!(r = (char**)ft_calloc(l + 2, sizeof(*r))))
+		return (NULL);
+	if (!(r[0] = ft_strdup("minishell")))
 		return (NULL);
 	r[l] = NULL;
 	current = argv;
@@ -63,9 +68,9 @@ static char
 		content = (t_token*)current->content;
 		if (content->type == WORD)
 		{
-			if (content->qt && !(r[i] = ft_strdup(content->s)))
+			if (content->qt && !(r[i + 1] = ft_strdup(content->s)))
 				return (NULL);
-			else if (!content->qt && !(r[i] = ft_strtrim(content->s, " \t")))
+			else if (!content->qt && !(r[i + 1] = ft_strtrim(content->s, " \t")))
 				return (NULL);
 			i++;
 		}
@@ -122,6 +127,8 @@ int
 {
 	char	**argv;
 	char	**envp;
+	pid_t	pid;
+	int		r;
 
 	//TODO: Doesn't check if directory exits ...
 
@@ -129,7 +136,12 @@ int
 		return (-1);
 	if (!(envp = ft_get_aenv(env)))
 		return (-1);
-	execve(path, argv, envp);
+	pid = fork();
+	r = 0;
+	if (!pid)
+		execve(path, argv, envp);
+	else
+		waitpid(pid, &r, 0);
 	ft_free_arr(argv);
 	ft_free_arr(envp);
 	return (0);

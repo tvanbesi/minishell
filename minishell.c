@@ -6,7 +6,7 @@
 /*   By: thomasvanbesien <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 17:09:01 by thomasvan         #+#    #+#             */
-/*   Updated: 2020/12/10 14:37:35 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/10 23:03:20 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int
 		token = ft_get_tokens(line, shell);
 		free(line);
 		//ft_lstiter(token, ft_puttoken);
-		ft_execute(NULL, token, shell->env);
 		ft_command(token, shell);
 		// CLEAR TOKENS
 	}
