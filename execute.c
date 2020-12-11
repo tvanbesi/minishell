@@ -6,7 +6,7 @@
 /*   By: tvanbesi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 14:04:49 by tvanbesi          #+#    #+#             */
-/*   Updated: 2020/12/11 10:45:57 by tvanbesi         ###   ########.fr       */
+/*   Updated: 2020/12/11 13:20:07 by tvanbesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,11 @@ static char
 	l = ft_get_argc(argv);
 	if (!l)
 	{
-		if (!(r = (char**)ft_calloc(3, sizeof(*r))))
+		if (!(r = (char**)ft_calloc(2, sizeof(*r))))
 			return (NULL);
 		if (!(r[0] = ft_strdup("minishell")))
 			return (NULL);
-		if (!(r[1] = ft_strdup("")))
-			return (NULL);
-		r[2] = NULL;
+		r[1] = NULL;
 		return (r);
 	}
 	if (!(r = (char**)ft_calloc(l + 2, sizeof(*r))))
@@ -118,8 +116,12 @@ static char
 void
 	ft_free_arr(char **a)
 {
-	while (*a)
-		free(*a++);
+	int	i;
+
+	i = 0;
+	while (a[i])
+		free(a[i++]);
+	free(a);
 }
 
 int
@@ -130,7 +132,9 @@ int
 	pid_t	pid;
 	int		r;
 
-	//TODO: Doesn't check if directory exits ...
+	//TODO: Doesn't check if directory exits
+	//fork fail not handled
+	//execve fail not handled
 
 	if (!(argv = ft_get_argv(token)))
 		return (-1);
